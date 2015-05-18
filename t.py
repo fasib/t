@@ -8,6 +8,12 @@ import os, re, sys, hashlib
 from operator import itemgetter
 from optparse import OptionParser, OptionGroup
 
+if sys.platform.startswith('win'):
+    COLOR = ''
+    COLOR_RESET = ''
+else:
+    COLOR = '\033[1m\033[31m'
+    COLOR_RESET = '\033[0m'
 
 class InvalidTaskfile(Exception):
     """Raised when the path to a task file already exists as a directory."""
@@ -219,7 +225,8 @@ class TaskDict(object):
         plen = max(map(lambda t: len(t[label]), tasks.values())) if tasks else 0
         for _, task in sorted(tasks.items()):
             if grep.lower() in task['text'].lower():
-                p = '%s - ' % task[label].ljust(plen) if not quiet else ''
+                p = '%4s - ' % task[label].ljust(plen) if not quiet else ''
+                p = COLOR + p + COLOR_RESET
                 print p + task['text']
 
     def write(self, delete_if_empty=False):

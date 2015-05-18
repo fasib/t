@@ -5,7 +5,7 @@ except:
 
 setup(
     name='t',
-    version='1.2.0',
+    version='1.2.0-a',
     author='Steve Losh',
     author_email='steve@stevelosh.com',
     url='http://bitbucket.org/sjl/t',
