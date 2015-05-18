@@ -334,9 +334,9 @@ def _main():
             kind = 'tasks' if not options.done else 'done'
             td.print_list(kind=kind, verbose=options.verbose, quiet=options.quiet,
                           grep=options.grep)
-    except e as AmbiguousPrefix:
+    except AmbiguousPrefix as e:
         sys.stderr.write('The ID "%s" matches more than one task.\n' % e.prefix)
-    except e as UnknownPrefix:
+    except UnknownPrefix as e:
         sys.stderr.write('The ID "%s" does not match any task.\n' % e.prefix)
 
 
