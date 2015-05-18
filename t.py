@@ -156,7 +156,7 @@ class TaskDict(object):
         If no tasks match the prefix an UnknownPrefix exception will be raised.
 
         """
-        matched = filter(lambda tid: tid.startswith(prefix), self.tasks.keys())
+        matched = list(filter(lambda tid: tid.startswith(prefix), self.tasks.keys()))
         if len(matched) == 1:
             return self.tasks[matched[0]]
         elif len(matched) == 0:
